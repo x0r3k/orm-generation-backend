@@ -1,18 +1,13 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
-import configuration from './config/configuration';
+import { ConfigModule } from './config/config.module';
+import { SandboxModule } from './modules/sandbox/sandbox.module';
 
 @Module({
-  imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-      load: [configuration],
-    }),
-  ],
+  imports: [ConfigModule, SandboxModule],
   controllers: [AppController],
   providers: [AppService],
 })
